@@ -1,51 +1,38 @@
-import { useEffect, useMemo, useState } from 'react';
+import React from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
-import Projects from './components/Projects';
 import Skills from './components/Skills';
+import Projects from './components/Projects';
 import Contact from './components/Contact';
 import CursorGlow from './components/CursorGlow';
 import ScrollProgress from './components/ScrollProgress';
-import PageTransition from './components/PageTransition';
-
-const pages = {
-  home: Hero,
-  profile: About,
-  stack: Skills,
-  work: Projects,
-  contact: Contact,
-};
-
-const getPageFromHash = () => {
-  const page = window.location.hash.replace('#', '') || 'home';
-  return pages[page] ? page : 'home';
-};
 
 function App() {
-  const [activePage, setActivePage] = useState(getPageFromHash);
-  const Page = useMemo(() => pages[activePage], [activePage]);
-
-  useEffect(() => {
-    const handleHashChange = () => {
-      setActivePage(getPageFromHash());
-      window.scrollTo({ top: 0, behavior: 'auto' });
-    };
-
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
-  }, []);
-
   return (
-    <div className="min-h-screen bg-[#101820] text-[#f6f1e8]">
+    <div className="relative min-h-screen bg-[#101820] text-[#f6f1e8] selection:bg-[#c4d600] selection:text-[#101820]">
+      
+      {/* 1. The Fixed Visual Background layer */}
+      {/* This uses the mesh-bg class from your index.css to create a beautiful static gradient behind the scrolling content */}
+      <div className="fixed inset-0 mesh-bg pointer-events-none z-0 opacity-60" />
+
+      {/* 2. Global Utilities */}
       <CursorGlow />
       <ScrollProgress />
-      <Navbar activePage={activePage} />
-      <main>
-        <PageTransition pageKey={activePage}>
-          <Page />
-        </PageTransition>
+      
+      {/* 3. The Navigation */}
+      <Navbar />
+
+      {/* 4. The Staked Scrolling Content */}
+      <main className="relative z-10 flex flex-col w-full overflow-hidden">
+        {/* Sections render one after another */}
+        <Hero />
+        <About />
+        <Skills />
+        <Projects />
+        <Contact />
       </main>
+      
     </div>
   );
 }
