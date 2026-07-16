@@ -47,12 +47,19 @@ const Hero = () => {
               Explore profile <FaArrowDown />
             </a>
           </div>
+
+          <div className="mt-6 flex items-center gap-3">
+            <div className="h-2 w-2 rounded-full bg-[#00b2a9] shadow-[0_0_18px_rgba(0,178,169,0.65)]" />
+            <div className="scroll-hint text-sm font-black uppercase tracking-[0.22em] text-[#f6f1e8]/55">
+              Scroll for more
+            </div>
+          </div>
         </div>
 
         <div className="animate-rise relative [animation-delay:120ms]">
           <div className="absolute -inset-6 rounded-[2rem] bg-[#00b2a9]/15 blur-3xl" />
           <div className="relative overflow-hidden rounded-[2rem] border border-[#f6f1e8]/12 bg-[#f6f1e8]/8 p-4 shadow-2xl shadow-black/30">
-            <div className="rounded-[1.5rem] bg-[#f6f1e8] p-5 text-[#101820]">
+            <div className="relative pulse-ring rounded-[1.5rem] bg-[#f6f1e8] p-5 text-[#101820]">
               <div className="flex items-center justify-between border-b border-[#101820]/10 pb-4">
                 <p className="text-xs font-black uppercase tracking-[0.22em] text-[#101820]/55">Live capability board</p>
                 <span className="rounded-full bg-[#c4d600] px-3 py-1 text-xs font-black">Open</span>

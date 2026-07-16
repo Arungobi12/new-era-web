@@ -2,15 +2,18 @@
 
 :root {
   --ink: #101820;
-  --paper: #f6f1e8;
+  --paper: #f7f1e6;
   --coral: #ff6b4a;
   --teal: #00b2a9;
   --lime: #c4d600;
+
   font-family: Inter, ui-sans-serif, system-ui, 'Segoe UI', Roboto, Arial, sans-serif;
   color: var(--paper);
   background: var(--ink);
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -29,6 +32,8 @@ body {
   min-height: 100svh;
   margin: 0;
   overflow-x: hidden;
+
+  /* Keep the starfield “vibe” as a layer, but default to your portfolio palette */
   background:
     radial-gradient(circle at top left, rgba(255, 107, 74, 0.15), transparent 28rem),
     radial-gradient(circle at bottom right, rgba(0, 178, 169, 0.15), transparent 28rem),
@@ -56,6 +61,29 @@ textarea {
   background: var(--lime);
 }
 
+/* Optional starfield (kept from your previous CSS) */
+.starfield {
+  background-image:
+    radial-gradient(1px 1px at 20px 30px, #ffffff, rgba(0, 0, 0, 0)),
+    radial-gradient(1px 1px at 40px 70px, #ffffff, rgba(0, 0, 0, 0)),
+    radial-gradient(1px 1px at 50px 160px, #ffffff, rgba(0, 0, 0, 0)),
+    radial-gradient(1px 1px at 90px 40px, #ffffff, rgba(0, 0, 0, 0)),
+    radial-gradient(1px 1px at 130px 80px, #ffffff, rgba(0, 0, 0, 0));
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  animation: moveBackground 100s linear infinite;
+}
+
+@keyframes moveBackground {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -10000px 5000px;
+  }
+}
+
+/* Mesh background used by App + Hero */
 .mesh-bg {
   background:
     linear-gradient(rgba(246, 241, 232, 0.05) 1px, transparent 1px),
@@ -83,39 +111,37 @@ textarea {
   animation: reveal 260ms ease-out both;
 }
 
-.page-enter {
-  animation: page-enter 520ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
-}
-
-.page-enter::before {
-  position: fixed;
-  inset: 0;
-  z-index: 45;
-  pointer-events: none;
-  content: '';
-  background: linear-gradient(100deg, rgba(255, 107, 74, 0.24), rgba(0, 178, 169, 0.14), transparent 65%);
-  animation: page-wipe 620ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
-}
-
-.letter-pop {
+/* Scroll reveal helpers (used by src/components/Reveal.jsx) */
+.reveal-hidden {
   opacity: 0;
-  transform: translateY(0.45em) rotate(2deg);
-  animation: letter-pop 520ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  transform: translateY(14px);
+  filter: blur(6px);
 }
 
-.word-swap {
-  animation: word-swap 420ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+  animation: enter-up 680ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
-.float-layer {
-  animation: float-layer 5s ease-in-out infinite;
+@keyframes enter-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
 }
 
 @keyframes ticker {
   from {
     transform: translateX(0);
   }
-
   to {
     transform: translateX(-50%);
   }
@@ -126,7 +152,6 @@ textarea {
     opacity: 0;
     transform: translateY(32px) scale(0.98);
   }
-
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
@@ -138,11 +163,29 @@ textarea {
     opacity: 0;
     transform: translateY(10px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.page-enter {
+  animation: page-enter 520ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.page-enter::before {
+  position: fixed;
+  inset: 0;
+  z-index: 45;
+  pointer-events: none;
+  content: '';
+  background: linear-gradient(
+    100deg,
+    rgba(255, 107, 74, 0.24),
+    rgba(0, 178, 169, 0.14),
+    transparent 65%
+  );
+  animation: page-wipe 620ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
 @keyframes page-enter {
@@ -151,7 +194,6 @@ textarea {
     transform: translateY(20px) scale(0.985);
     filter: blur(10px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
@@ -164,11 +206,20 @@ textarea {
     transform: translateX(-18%);
     opacity: 0.9;
   }
-
   to {
     transform: translateX(100%);
     opacity: 0;
   }
+}
+
+.letter-pop {
+  opacity: 0;
+  transform: translateY(0.45em) rotate(2deg);
+  animation: letter-pop 520ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.word-swap {
+  animation: word-swap 420ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
 @keyframes letter-pop {
@@ -183,11 +234,14 @@ textarea {
     opacity: 0;
     transform: translateY(0.35em);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.float-layer {
+  animation: float-layer 5s ease-in-out infinite;
 }
 
 @keyframes float-layer {
@@ -195,10 +249,117 @@ textarea {
   100% {
     transform: translateY(0) rotate(-1deg);
   }
-
   50% {
     transform: translateY(-12px) rotate(1deg);
   }
+}
+
+/* Polished micro-interactions (used for hover highlights) */
+.shine-border {
+  position: relative;
+}
+.shine-border::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  background: linear-gradient(
+    100deg,
+    rgba(255, 107, 74, 0),
+    rgba(255, 107, 74, 0.22),
+    rgba(0, 178, 169, 0.16),
+    rgba(0, 178, 169, 0)
+  );
+  transition: opacity 260ms ease;
+}
+
+.shine-border:hover::after {
+  opacity: 1;
+}
+
+/* Visible hero motion */
+@keyframes pulse-ring {
+  0% {
+    opacity: 0.15;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 0.45;
+    transform: scale(1.03);
+  }
+  100% {
+    opacity: 0.15;
+    transform: scale(0.96);
+  }
+}
+
+.pulse-ring::before {
+  content: '';
+  position: absolute;
+  inset: -14px;
+  border-radius: 9999px;
+  border: 1px solid rgba(0, 178, 169, 0.55);
+  box-shadow: 0 0 0 10px rgba(0, 178, 169, 0.10);
+  animation: pulse-ring 1.8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.scroll-hint {
+  animation: scroll-hint 1.7s ease-in-out infinite;
+}
+
+@keyframes scroll-hint {
+  0% {
+    transform: translateY(0);
+    opacity: 0.85;
+  }
+  50% {
+    transform: translateY(6px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 0.85;
+  }
+}
+
+@keyframes panel-swap {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.99);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+.panel-swap {
+  animation: panel-swap 380ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+/* Skills pulse (bar + number) */
+@keyframes bar-pulse {
+  0% {
+    filter: drop-shadow(0 0 0 rgba(0, 178, 169, 0));
+    transform: translateY(0);
+  }
+  50% {
+    filter: drop-shadow(0 0 16px rgba(0, 178, 169, 0.35));
+    transform: translateY(-1px);
+  }
+  100% {
+    filter: drop-shadow(0 0 0 rgba(0, 178, 169, 0));
+    transform: translateY(0);
+  }
+}
+
+.bar-pulse {
+  animation: bar-pulse 700ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
 @media (prefers-reduced-motion: reduce) {
