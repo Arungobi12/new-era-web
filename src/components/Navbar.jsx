@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { FaGithub, FaLinkedinIn } from 'react-icons/fa';
 
 const navLinks = [
@@ -8,7 +9,32 @@ const navLinks = [
   { label: 'Contact', href: '#contact', page: 'contact' },
 ];
 
-const Navbar = ({ activePage = 'home' }) => {
+const Navbar = () => {
+  // Add state to track the active section
+  const [activePage, setActivePage] = useState('home');
+
+  // Watch the scroll position and update the active tab automatically
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = navLinks.map(link => document.getElementById(link.page));
+      // Add a slight offset so it triggers right before the section hits the very top
+      const scrollPosition = window.scrollY + 200; 
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = sections[i];
+        if (section && section.offsetTop <= scrollPosition) {
+          setActivePage(navLinks[i].page);
+          break;
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    // Run once on mount to set initial state
+    handleScroll(); 
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <nav className="fixed inset-x-0 top-0 z-50 border-b border-[#f8f7ff]/10 bg-[#07070a]/80 backdrop-blur-2xl">
 
@@ -31,8 +57,8 @@ const Navbar = ({ activePage = 'home' }) => {
               className={`rounded-full px-4 py-2 text-xs font-black uppercase tracking-[0.18em] transition 
               focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7c3aed] focus-visible:ring-offset-2 focus-visible:ring-offset-[#07070a] 
               ${
-                activePage === (link.page || link.href.replace('#', ''))
-                  ? 'bg-[#f8f7ff]/20 text-[#f8f7ff]' /* 80% Transparent Active Pill */
+                activePage === link.page
+                  ? 'bg-[#f8f7ff]/20 text-[#f8f7ff]' 
                   : 'text-[#f8f7ff]/60 hover:bg-[#f8f7ff]/10 hover:text-[#f8f7ff]'
               }`}
             >
@@ -63,7 +89,6 @@ const Navbar = ({ activePage = 'home' }) => {
           </a>
           <a
             href="#contact"
-            /* 80% Transparent CTA Button */
             className="hidden rounded-full bg-[#f8f7ff]/20 px-5 py-3 text-xs font-black uppercase tracking-[0.16em] text-[#f8f7ff] transition hover:bg-[#ff2e2e] sm:inline-flex"
           >
             Let&apos;s build
@@ -73,23 +98,19 @@ const Navbar = ({ activePage = 'home' }) => {
 
       {/* Mobile Navigation */}
       <div className="flex gap-2 overflow-x-auto border-t border-[#f8f7ff]/10 px-4 py-2 md:hidden">
-        {navLinks.map((link) => {
-          const page = link.page || link.href.replace('#', '');
-
-          return (
-            <a
-              key={link.href}
-              href={link.href}
-              className={`shrink-0 rounded-full px-3 py-2 text-[0.65rem] font-black uppercase tracking-[0.16em] transition ${
-                activePage === page
-                  ? 'bg-[#f8f7ff]/20 text-[#f8f7ff]' /* 80% Transparent Active Pill */
-                  : 'bg-[#f8f7ff]/5 text-[#f8f7ff]/65 hover:bg-[#f8f7ff]/10 hover:text-[#f8f7ff]'
-              }`}
-            >
-              {link.label}
-            </a>
-          );
-        })}
+        {navLinks.map((link) => (
+          <a
+            key={link.href}
+            href={link.href}
+            className={`shrink-0 rounded-full px-3 py-2 text-[0.65rem] font-black uppercase tracking-[0.16em] transition ${
+              activePage === link.page
+                ? 'bg-[#f8f7ff]/20 text-[#f8f7ff]' 
+                : 'bg-[#f8f7ff]/5 text-[#f8f7ff]/65 hover:bg-[#f8f7ff]/10 hover:text-[#f8f7ff]'
+            }`}
+          >
+            {link.label}
+          </a>
+        ))}
       </div>
     </nav>
   );

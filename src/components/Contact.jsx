@@ -29,7 +29,7 @@ const Contact = () => {
               <div className="mt-10 flex flex-wrap gap-3">
                 <a
                   href="mailto:arungobi12@gmail.com"
-                  className="rounded-full bg-[#f6f1e8] px-5 py-3 text-sm font-black text-[#101820] transition hover:bg-[#ff6b4a]"
+                  className="rounded-full bg-[#f8f7ff]/20 px-5 py-3 text-sm font-black text-[#f8f7ff] transition hover:bg-[#ff2e2e]"
                 >
                   <FaEnvelope className="mr-2 inline" /> Email
                 </a>
@@ -37,7 +37,7 @@ const Contact = () => {
                   href="https://github.com/arungobi12"
                   target="_blank"
                   rel="noreferrer"
-                  className="rounded-full border border-[#f6f1e8]/15 px-5 py-3 text-sm font-black transition hover:border-[#00b2a9] hover:text-[#00b2a9]"
+                  className="rounded-full border border-[#f8f7ff]/15 px-5 py-3 text-sm font-black text-[#f8f7ff] transition hover:border-[#7c3aed] hover:text-[#7c3aed]"
                 >
                   <FaGithub className="mr-2 inline" /> GitHub
                 </a>
@@ -80,7 +80,7 @@ const Contact = () => {
                 />
                 <a
                   href={mailHref}
-                  className="inline-flex h-14 items-center justify-center rounded-2xl bg-[#101820] text-sm font-black uppercase tracking-[0.16em] text-[#f6f1e8] transition hover:bg-[#ff6b4a] hover:text-[#101820]"
+                  className="inline-flex h-14 items-center justify-center rounded-full border border-[#f8f7ff]/15 px-5 py-3 text-sm font-black text-[#f8f7ff] transition hover:border-[#7c3aed] hover:text-[#7c3aed]"
                 >
                   Compose message
                 </a>
