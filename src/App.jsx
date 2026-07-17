@@ -10,31 +10,33 @@ import ScrollProgress from './components/ScrollProgress';
 
 function App() {
   return (
-    <div className="relative min-h-screen bg-[#101820] text-[#f6f1e8] selection:bg-[#c4d600] selection:text-[#101820]">
-      
-      {/* 1. The Fixed Visual Background layer */}
-      {/* This uses the mesh-bg class from your index.css to create a beautiful static gradient behind the scrolling content */}
+    <div className="relative min-h-screen bg-[var(--ink)] text-[color:var(--paper)] selection:bg-[var(--lime)] selection:text-[var(--ink)]">
+
+      {/* Fixed background */}
       <div className="fixed inset-0 mesh-bg pointer-events-none z-0 opacity-60" />
 
-      {/* 2. Global Utilities */}
+      {/* Subtle vignette */}
+      <div className="fixed inset-0 pointer-events-none z-0 opacity-70" aria-hidden>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(255,46,46,0.10),transparent_55%),radial-gradient(circle_at_20%_90%,rgba(124,58,237,0.10),transparent_55%)]" />
+      </div>
+
+
+
       <CursorGlow />
       <ScrollProgress />
-      
-      {/* 3. The Navigation */}
+
       <Navbar />
 
-      {/* 4. The Staked Scrolling Content */}
       <main className="relative z-10 flex flex-col w-full overflow-hidden">
-        {/* Sections render one after another */}
         <Hero />
         <About />
         <Skills />
         <Projects />
         <Contact />
       </main>
-      
     </div>
   );
 }
+
 
 export default App;

@@ -17,8 +17,9 @@ const Hero = () => {
   }, []);
 
   return (
-    <section id="home" className="relative isolate overflow-hidden bg-[#101820] pt-24">
+    <section id="home" className="relative isolate overflow-hidden pt-24">
       <div className="mesh-bg absolute inset-0 -z-10" />
+
       <div className="mx-auto grid min-h-[calc(100svh-6rem)] max-w-7xl items-center gap-10 px-5 py-14 sm:px-8 lg:grid-cols-[1.05fr_0.95fr]">
         <div className="animate-rise">
           <div className="mb-8 flex flex-wrap gap-3">
