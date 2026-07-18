@@ -71,6 +71,7 @@ const Projects = () => {
             </div>
 
             <div className="grid gap-3 pl-6">
+
               {projects.map((project, index) => (
                 <button
                   key={project.title}

@@ -5,8 +5,11 @@ import About from './components/About';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
+import Process from './components/Process';
+import Features from './components/Features';
 import CursorGlow from './components/CursorGlow';
 import ScrollProgress from './components/ScrollProgress';
+
 
 function App() {
   return (
@@ -29,11 +32,14 @@ function App() {
 
       <main className="relative z-10 flex flex-col w-full overflow-hidden">
         <Hero />
+        <Features />
         <About />
         <Skills />
+        <Process />
         <Projects />
         <Contact />
       </main>
+
     </div>
   );
 }
