@@ -115,25 +115,158 @@ textarea {
   animation: reveal 260ms ease-out both;
 }
 
-/* Scroll reveal helpers (used by src/components/Reveal.jsx) */
+/* ─── Scroll reveal helpers ─── */
 .reveal-hidden {
   opacity: 0;
-  transform: translateY(14px);
   filter: blur(6px);
 }
 
+/* Shared visible base */
 .reveal-visible {
   opacity: 1;
-  transform: translateY(0);
   filter: blur(0);
-  animation: enter-up 680ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
-@keyframes enter-up {
+/* Variant: default enter-up (Hero) */
+.reveal-hero {
+  transform: translateY(20px) scale(0.97);
+}
+.reveal-hero.reveal-visible {
+  animation: hero-rise 800ms cubic-bezier(0.15, 0.85, 0.25, 1) both;
+}
+
+/* Variant: Features - slide-in from right with stagger */
+.reveal-features {
+  transform: translateX(30px);
+}
+.reveal-features.reveal-visible {
+  animation: features-slide-in 600ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+/* Variant: About - cascade upward with a subtle rotation */
+.reveal-about {
+  transform: translateY(22px) rotate(-1deg);
+}
+.reveal-about.reveal-visible {
+  animation: about-cascade 700ms cubic-bezier(0.18, 0.89, 0.25, 1) both;
+}
+
+/* Variant: Skills - expand with pulse */
+.reveal-skills {
+  transform: scale(0.94);
+  transform-origin: center bottom;
+}
+.reveal-skills.reveal-visible {
+  animation: skills-expand 600ms cubic-bezier(0.2, 0.8, 0.3, 1) both;
+}
+
+/* Variant: Process - fade slide horizontal */
+.reveal-process {
+  transform: translateX(-20px);
+}
+.reveal-process.reveal-visible {
+  animation: process-fade-slide 550ms cubic-bezier(0.22, 0.78, 0.3, 1) both;
+}
+
+/* Variant: Projects - lift upward with deepening shadow */
+.reveal-projects {
+  transform: translateY(16px);
+}
+.reveal-projects.reveal-visible {
+  animation: projects-lift 680ms cubic-bezier(0.12, 0.82, 0.25, 1) both;
+}
+
+/* Variant: Contact - drift up with subtle parallax */
+.reveal-contact {
+  transform: translateY(24px);
+}
+.reveal-contact.reveal-visible {
+  animation: contact-drift 750ms cubic-bezier(0.15, 0.85, 0.3, 1) both;
+}
+
+@keyframes hero-rise {
   from {
     opacity: 0;
-    transform: translateY(14px);
+    transform: translateY(20px) scale(0.97);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes features-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
     filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes about-cascade {
+  from {
+    opacity: 0;
+    transform: translateY(22px) rotate(-1deg);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
+    filter: blur(0);
+  }
+}
+
+@keyframes skills-expand {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes process-fade-slide {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes projects-lift {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes contact-drift {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+    filter: blur(8px);
   }
   to {
     opacity: 1;
@@ -348,6 +481,22 @@ textarea {
   animation: panel-swap 380ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
+/* Chip-in animation for skill/project tags */
+@keyframes chip-in {
+  from {
+    opacity: 0;
+    transform: scale(0.88);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.chip-in {
+  animation: chip-in 420ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
 /* Skills pulse (bar + number) */
 @keyframes bar-pulse {
   0% {
@@ -367,6 +516,24 @@ textarea {
 
 .bar-pulse {
   animation: bar-pulse 700ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+/* ─── Scroll-page base (inline styles handle transitions) ─── */
+.scroll-page {
+  position: relative;
+  will-change: transform, opacity, clip-path, filter;
+  transition: opacity 100ms ease, transform 100ms ease, filter 100ms ease;
+}
+
+/* ─── Reduce motion preference ─── */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-page {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    clip-path: none !important;
+    box-shadow: none !important;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -21,7 +21,7 @@ const Hero = () => {
       <div className="mesh-bg absolute inset-0 -z-10" />
 
       <div className="mx-auto grid min-h-[calc(100svh-6rem)] max-w-7xl items-center gap-10 px-5 py-14 sm:px-8 lg:grid-cols-[1.05fr_0.95fr]">
-        <div className="animate-rise">
+        <div className="reveal-hero reveal-visible">
           <div className="mb-8 flex flex-wrap gap-3">
             {['Full-stack developer', 'Data analytics', 'React UI'].map((item) => (
               <span key={item} className="rounded-full border border-[#f6f1e8]/12 bg-[#f6f1e8]/6 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-[#f6f1e8]/70">

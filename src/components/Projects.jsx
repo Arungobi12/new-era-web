@@ -42,7 +42,7 @@ const Projects = () => {
   return (
     <section id="work" className="min-h-screen bg-[#f6f1e8] px-5 pb-24 pt-32 text-[#101820] sm:px-8 lg:pb-32">
       <div className="mx-auto max-w-7xl">
-        <Reveal>
+        <Reveal variant="projects">
           <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <div>
               <p className="text-xs font-black uppercase tracking-[0.24em] text-[#ff6b4a]">Selected Work</p>
@@ -98,7 +98,7 @@ const Projects = () => {
             </div>
           </div>
 
-          <Reveal>
+          <Reveal variant="projects">
             <article key={selected.title} className="animate-reveal rounded-[2rem] border border-[#101820]/10 bg-white p-6 shadow-2xl shadow-[#101820]/8">
               <div className="min-h-[360px] rounded-[1.5rem] p-6 text-[#101820]" style={{ background: selected.color }}>
                 <p className="text-xs font-black uppercase tracking-[0.24em] opacity-70">{selected.label}</p>

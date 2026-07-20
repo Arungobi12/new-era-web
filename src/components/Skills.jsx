@@ -16,7 +16,7 @@ const Skills = () => {
     <section id="stack" className="min-h-screen bg-[#101820] px-5 pb-24 pt-32 text-[#f6f1e8] sm:px-8 lg:pb-32">
       <div className="mx-auto max-w-7xl">
         <div className="grid gap-10 lg:grid-cols-[0.75fr_1.25fr]">
-          <Reveal className="block" delayMs={0}>
+          <Reveal variant="skills" className="block" delayMs={0}>
             <p className="text-xs font-black uppercase tracking-[0.24em] text-[#c4d600]">Stack</p>
             <h2 className="mt-5 text-4xl font-black leading-tight tracking-tight sm:text-6xl">
               <AnimatedTitle text="A practical skill map for building modern web products." accentWords={['skill', 'modern']} />
@@ -32,6 +32,7 @@ const Skills = () => {
                 <Reveal
                   key={group.title}
                   as="article"
+                  variant="skills"
                   delayMs={idx * 110}
                   className="rounded-[1.75rem] border border-[#f6f1e8]/10 bg-[#f6f1e8]/6 p-5"
                 >

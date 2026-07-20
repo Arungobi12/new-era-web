@@ -16,7 +16,7 @@ const Contact = () => {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,107,74,0.18),transparent_30%),radial-gradient(circle_at_80%_40%,rgba(0,178,169,0.16),transparent_34%)]" />
       <div className="relative mx-auto max-w-7xl">
         <div className="grid gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-center">
-          <Reveal>
+          <Reveal variant="contact">
             <div>
               <p className="text-xs font-black uppercase tracking-[0.24em] text-[#c4d600]">Contact</p>
               <h2 className="mt-5 max-w-4xl text-5xl font-black leading-[0.95] tracking-tight sm:text-7xl">
@@ -53,7 +53,7 @@ const Contact = () => {
             </div>
           </Reveal>
 
-          <Reveal delayMs={120}>
+          <Reveal variant="contact" delayMs={120}>
             <div className="rounded-[2rem] border border-[#f6f1e8]/10 bg-[#f6f1e8] p-5 text-[#101820]">
               <div className="grid gap-3">
                 <input
@@ -89,7 +89,7 @@ const Contact = () => {
           </Reveal>
         </div>
 
-        <Reveal delayMs={160} as="footer" className="mt-16 flex flex-col justify-between gap-4 border-t border-[#f6f1e8]/10 pt-8 text-sm font-bold text-[#f6f1e8]/55 sm:flex-row">
+        <Reveal variant="contact" delayMs={160} as="footer" className="mt-16 flex flex-col justify-between gap-4 border-t border-[#f6f1e8]/10 pt-8 text-sm font-bold text-[#f6f1e8]/55 sm:flex-row">
           <p>S Arun Gobi. Built with React, Tailwind CSS, and too much attention to detail.</p>
           <a href="#home" className="text-[#f6f1e8] transition hover:text-[#ff6b4a]">Back to top</a>
         </Reveal>

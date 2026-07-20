@@ -46,14 +46,14 @@ const Features = () => {
     <section id="features" className="min-h-screen bg-[#f6f1e8] px-5 pb-24 pt-32 text-[#101820] sm:px-8 lg:pb-32">
       <div className="mx-auto max-w-7xl">
         <div className="grid gap-12 lg:grid-cols-[1.0fr_1.0fr] lg:items-end">
-          <Reveal>
+          <Reveal variant="features">
             <p className="text-xs font-black uppercase tracking-[0.24em] text-[#ff6b4a]">Features</p>
             <h2 className="mt-5 max-w-3xl text-4xl font-black leading-tight tracking-tight sm:text-6xl">
               <AnimatedTitle text="Built like a studio: design, system, and delivery." accentWords={['studio']} />
             </h2>
           </Reveal>
 
-          <Reveal delayMs={120} as="p" className="max-w-xl text-xl leading-9 text-[#101820]/68">
+          <Reveal delayMs={120} as="p" variant="features" className="max-w-xl text-xl leading-9 text-[#101820]/68">
             A portfolio should explain what you do—and how it comes together. These are the capabilities I bring to product work.
           </Reveal>
         </div>
@@ -65,6 +65,7 @@ const Features = () => {
               <Reveal
                 key={f.title}
                 as="article"
+                variant="features"
                 delayMs={idx * 90}
                 className="group rounded-[1.75rem] border border-[#101820]/10 bg-white p-6 shadow-2xl shadow-[#101820]/5 transition hover:-translate-y-1 hover:border-[#ff6b4a]/50"
               >
