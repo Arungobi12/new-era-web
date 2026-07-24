@@ -16,13 +16,11 @@ const AnimatedTitle = ({ text, className = '', accentWords = [] }) => {
       {words.map((word, wordIndex) => {
         const cleanWord = word.replace(/[^a-zA-Z]/g, '').toLowerCase();
         const isAccent = accentWords.includes(cleanWord);
-        // Vary per-word timing offset for a more natural cascade
         const wordOffset = wordIndex * 40;
 
         return (
           <span key={`${word}-${wordIndex}`} className="inline-block whitespace-nowrap">
             {word.split('').map((letter, index) => {
-              // Stagger each letter slightly more, plus word offset
               const delay = `${letterIndex * 28 + wordOffset}ms`;
               letterIndex += 1;
 
